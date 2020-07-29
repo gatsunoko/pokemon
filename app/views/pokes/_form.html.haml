@@ -1,0 +1,38 @@
+= form_with(model: poke, local: true) do |form|
+  - if poke.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(poke.errors.count, "error")
+        prohibited this poke from being saved:
+      %ul
+        - poke.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :name
+    = form.text_field :name
+  .field
+    = form.label :h
+    = form.number_field :h
+  .field
+    = form.label :a
+    = form.number_field :a
+  .field
+    = form.label :b
+    = form.number_field :b
+  .field
+    = form.label :c
+    = form.number_field :c
+  .field
+    = form.label :d
+    = form.number_field :d
+  .field
+    = form.label :s
+    = form.number_field :s
+  .field
+    = form.label :type_1
+    = form.number_field :type_1
+  .field
+    = form.label :type_2
+    = form.number_field :type_2
+  .actions
+    = form.submit

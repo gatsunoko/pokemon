@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  h: 1
+  a: 1
+  b: 1
+  c: 1
+  d: 1
+  s: 1
+  type_1: 1
+  type_2: 1
+
+two:
+  name: MyString
+  h: 1
+  a: 1
+  b: 1
+  c: 1
+  d: 1
+  s: 1
+  type_1: 1
+  type_2: 1

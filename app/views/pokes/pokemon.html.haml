@@ -1,0 +1,9 @@
+%h1 一覧
+
+.search.col-12.mx-2.text-right
+  = form_with(url: poke_search_pokes_path, method: :get) do |f|
+    = f.text_field :keyword, class: 'form-control col-xs-12 col-sm-8 col-md-6 col-lg-6'
+    %button.btn.btn-success.my-2.my-sm-0{:type => "submit"} 検索
+#poke_1
+
+#poke_2
