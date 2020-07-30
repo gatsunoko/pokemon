@@ -9,7 +9,7 @@ class PokesController < ApplicationController
   def index
     @pokes = Poke.all
     p '--------------------'
-    #getPoke()
+    # getPoke()
   end
 
   def show
@@ -20,6 +20,7 @@ class PokesController < ApplicationController
 
   def poke_search
     @poke = Poke.where('name like ?', '%' + params[:keyword] + '%').first
+    @output = params[:output].to_s
   end
 
   def new
@@ -76,6 +77,7 @@ class PokesController < ApplicationController
       p '22222222222222222222222222'
       pokelist = Nokogiri::HTML.parse(url_set("https://yakkun.com/swsh/stats_list.htm"), nil, 'EUC-JP')
       p pokelist.title
+      i = 0
       pokelist.css('#contents > div:nth-child(4) > div > table > tbody tr').each do |doc|
         pokemon = Poke.new
         pokePage_url = doc.css('td.left > a')[0][:href]
@@ -106,6 +108,9 @@ class PokesController < ApplicationController
         pokemon.s = doc.css('td:nth-child(8)').inner_text
 
         pokemon.save
+
+        break if i > 10
+        i = i + 1;
       end
     end
 

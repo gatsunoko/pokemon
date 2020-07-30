@@ -1,0 +1,2 @@
+class AttackType < ApplicationRecord
+end

@@ -26,6 +26,42 @@
 %p
   %strong Type 2:
   = is_type(@poke.type_2).to_s
+.attack_type
+  %p
+    4倍
+  -1.upto(18) do |attack|
+    - result = attack_result(attack, @poke.type_1, @poke.type_2)
+    - if result == 4
+      %p
+        = is_type(attack).to_s
+        / = is_type(attack).to_s + result.to_s + '倍'
+.attack_type
+  %p
+    2倍
+  -1.upto(18) do |attack|
+    - result = attack_result(attack, @poke.type_1, @poke.type_2)
+    - if result == 2
+      %p
+        = is_type(attack).to_s
+        / = is_type(attack).to_s + result.to_s + '倍'
+.attack_type
+  %p
+    0.5倍
+  -1.upto(18) do |attack|
+    - result = attack_result(attack, @poke.type_1, @poke.type_2)
+    - if result == 0.5
+      %p
+        = is_type(attack).to_s
+        / = is_type(attack).to_s + result.to_s + '倍'
+.attack_type
+  %p
+    0.25倍
+  -1.upto(18) do |attack|
+    - result = attack_result(attack, @poke.type_1, @poke.type_2)
+    - if result == 0.25
+      %p
+        = is_type(attack).to_s
+        / = is_type(attack).to_s + result.to_s + '倍'
 = link_to 'Edit', edit_poke_path(@poke)
 |
 = link_to 'Back', pokes_path
