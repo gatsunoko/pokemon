@@ -1,5 +1,4 @@
 %p
-  %strong Name:
   = @poke.name
 %p
   %strong H:
@@ -59,5 +58,14 @@
     - result = attack_result(attack, @poke.type_1, @poke.type_2)
     - if result == 0.25
       %p
+        = is_type(attack).to_s
+        / = is_type(attack).to_s + result.to_s + '倍'
+.attack_type
+  %p
+    無効
+  -1.upto(18) do |attack|
+    - result = attack_result(attack, @poke.type_1, @poke.type_2)
+    - if result == 0
+      %p{class: "#{is_type(attack).to_s}"}
         = is_type(attack).to_s
         / = is_type(attack).to_s + result.to_s + '倍'
