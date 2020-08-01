@@ -1,17 +1,17 @@
 .poke_area
   .area_1
-    .search.col-12.mx-2.text-right
-      = form_with(url: poke_search_pokes_path, method: :get) do |f|
-        = f.text_field :keyword, id: 'poke_list', class: 'form-control col-xs-12 col-sm-8 col-md-6 col-lg-6'
+    .search.col-12.text-right.my-2
+      = form_with(url: poke_search_pokes_path, method: :get, class: 'row') do |f|
+        = f.text_field :keyword, id: 'poke_list', class: 'form-control col-10'
+        %button.btn.btn-success.col-2{:type => "submit"} 🔍
         = f.hidden_field :output, value: 'poke_1'
-        %button.btn.btn-success.my-2.my-sm-0{:type => "submit"} 検索
     #poke_1
   .area_2
-    .search.col-12.mx-2.text-right
-      = form_with(url: poke_search_pokes_path, method: :get) do |f|
-        = f.text_field :keyword, class: 'form-control col-xs-12 col-sm-8 col-md-6 col-lg-6'
+    .search.col-12.text-right.my-2
+      = form_with(url: poke_search_pokes_path, method: :get, class: 'row') do |f|
+        = f.text_field :keyword, id: 'poke_list2', class: 'form-control col-10'
+        %button.btn.btn-success.col-2{:type => "submit"} 🔍
         = f.hidden_field :output, value: 'poke_2'
-        %button.btn.btn-success.my-2.my-sm-0{:type => "submit"} 検索
     #poke_2
 
 :javascript
@@ -26,6 +26,22 @@
       },
       select: function(event, ui) {
         $('#poke_list').val(ui.item.name);
+        return false;
+      }
+    }).data("ui-autocomplete")._renderItem = function(ul, item) {
+      return $("<li>").attr("data-value", item.name).data("ui-autocomplete-item", item).append("<a>" + item.name + "</a>").appendTo(ul);
+    };
+
+    $('#poke_list2').autocomplete({
+      source: "/pokes/auto_complete.json",
+      delay: 500,
+      minLength: 2,
+      focus: function(event, ui) {
+        $("#poke_list2").val(ui.item.name);
+        return false;
+      },
+      select: function(event, ui) {
+        $('#poke_list2').val(ui.item.name);
         return false;
       }
     }).data("ui-autocomplete")._renderItem = function(ul, item) {

@@ -5,6 +5,10 @@
 
 .poke_area {
   display: flex;
+  p {
+    margin: 0 0 7px 0;
+    font-size: 16px
+  }
   .area_1 {
     text-align: right;
     padding-right: 5px;

@@ -1,28 +1,36 @@
 %p
   = @poke.name
 %p
-  %strong H:
+  - if @output == 'poke_1'
+    %strong H:
   = @poke.h
 %p
-  %strong A:
+  - if @output == 'poke_1'
+    %strong A:
   = @poke.a
 %p
-  %strong B:
+  - if @output == 'poke_1'
+    %strong B:
   = @poke.b
 %p
-  %strong C:
+  - if @output == 'poke_1'
+    %strong C:
   = @poke.c
 %p
-  %strong D:
+  - if @output == 'poke_1'
+    %strong D:
   = @poke.d
 %p
-  %strong S:
+  - if @output == 'poke_1'
+    %strong S:
   = @poke.s
 %p
-  %strong Type 1:
+  - if @output == 'poke_1'
+    %strong Type 1:
   = is_type(@poke.type_1).to_s
 %p
-  %strong Type 2:
+  - if @output == 'poke_1'
+    %strong Type 2:
   = is_type(@poke.type_2).to_s
 .attack_type
   %p
@@ -32,7 +40,6 @@
     - if result == 4
       %p
         = is_type(attack).to_s
-        / = is_type(attack).to_s + result.to_s + '倍'
 .attack_type
   %p
     2倍
@@ -41,7 +48,6 @@
     - if result == 2
       %p
         = is_type(attack).to_s
-        / = is_type(attack).to_s + result.to_s + '倍'
 .attack_type
   %p
     0.5倍
@@ -50,7 +56,6 @@
     - if result == 0.5
       %p
         = is_type(attack).to_s
-        / = is_type(attack).to_s + result.to_s + '倍'
 .attack_type
   %p
     0.25倍
@@ -59,7 +64,6 @@
     - if result == 0.25
       %p
         = is_type(attack).to_s
-        / = is_type(attack).to_s + result.to_s + '倍'
 .attack_type
   %p
     無効
@@ -68,4 +72,3 @@
     - if result == 0
       %p{class: "#{is_type(attack).to_s}"}
         = is_type(attack).to_s
-        / = is_type(attack).to_s + result.to_s + '倍'
