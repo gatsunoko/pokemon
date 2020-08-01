@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'pokes#index'
   resources :pokes do
     collection do
+      get :auto_complete
       get :pokemon
       get :poke_search
     end

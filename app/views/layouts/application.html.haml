@@ -5,7 +5,10 @@
     %title Pokemon
     = csrf_meta_tags
     = csp_meta_tag
+    /jquery
+    %script{:crossorigin => "anonymous", :integrity => "sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=", :src => "https://code.jquery.com/jquery-3.4.1.js"}
     = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
     = javascript_pack_tag 'application'
   %body
     = yield

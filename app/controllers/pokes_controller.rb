@@ -64,6 +64,14 @@ class PokesController < ApplicationController
     end
   end
 
+  def auto_complete
+    @pokes = Poke.select('name').where('name like ?', params[:term].to_s + '%')
+
+    p params[:term].to_s
+    p @pokes.count
+    render json: @pokes.to_json
+  end
+
   private
     def set_poke
       @poke = Poke.find(params[:id])
