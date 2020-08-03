@@ -76,7 +76,7 @@
 
   });
 
-  function statusChange(change, id, output, status) {
+  function statusChange(change, id, output, status, upCount) {
     //計算
     let count;
     let statusValue;
@@ -204,5 +204,12 @@
     }
     else if (count == -6) {
       $(id)[0].innerHTML = Math.floor(statusValue * 0.25);
+    }
+    //上昇数書き換え
+    if (count == 0) {
+      $(upCount)[0].innerHTML = ""
+    }
+    else {
+      $(upCount)[0].innerHTML = count;
     }
   }

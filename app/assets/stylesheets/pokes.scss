@@ -24,6 +24,35 @@
     padding-bottom: 5px;
     width: 50%;
     max-width: 260px;
+    .name {
+      margin: 0;
+    }
+    .shuzokuti {
+      font-size: 10px;
+      margin: 0;
+    }
+    .upButton,
+    .downButton {
+      text-align: center;
+      display: inline-block;
+      padding: 1px;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      border-radius: 5px;
+      /*選択負荷*/
+     -ms-user-select: none;
+     -moz-user-select: none;
+     -khtml-user-select: none;
+     -webkit-user-select: none;
+     user-select: none;
+    }
+    .upButton {
+      color: red;
+    }
+    .downButton {
+      color: blue;
+    }
   }
   .normal,
   .honoo,
