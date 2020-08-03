@@ -1,74 +1,104 @@
 %p
   = @poke.name
 %p
+  %span{onclick: "statusChange('up', '#hp_#{@output}', '#{@output}', 'hp')"}
+    ↑
+  %span{onclick: "statusChange('down', '#hp_#{@output}', '#{@output}', 'hp')"}
+    ↓
   - if @output == 'poke_1'
     %strong H:
-  = @poke.h
+  %span{ id: "hp_#{@output}"}
+    = @poke.h
 %p
+  %span{onclick: "statusChange('up', '#a_#{@output}', '#{@output}', 'a')"}
+    ↑
+  %span{onclick: "statusChange('down', '#a_#{@output}', '#{@output}', 'a')"}
+    ↓
   - if @output == 'poke_1'
     %strong A:
-  = @poke.a
+  %span{ id: "a_#{@output}"}
+    = @poke.a
 %p
+  %span{onclick: "statusChange('up', '#b_#{@output}', '#{@output}', 'b')"}
+    ↑
+  %span{onclick: "statusChange('down', '#b_#{@output}', '#{@output}', 'b')"}
+    ↓
   - if @output == 'poke_1'
     %strong B:
-  = @poke.b
+  %span{ id: "b_#{@output}"}
+    = @poke.b
 %p
+  %span{onclick: "statusChange('up', '#c_#{@output}', '#{@output}', 'c')"}
+    ↑
+  %span{onclick: "statusChange('down', '#c_#{@output}', '#{@output}', 'c')"}
+    ↓
   - if @output == 'poke_1'
     %strong C:
-  = @poke.c
+  %span{ id: "c_#{@output}"}
+    = @poke.c
 %p
+  %span{onclick: "statusChange('up', '#d_#{@output}', '#{@output}', 'd')"}
+    ↑
+  %span{onclick: "statusChange('down', '#d_#{@output}', '#{@output}', 'd')"}
+    ↓
   - if @output == 'poke_1'
     %strong D:
-  = @poke.d
+  %span{ id: "d_#{@output}"}
+    = @poke.d
 %p
+  %span{onclick: "statusChange('up', '#s_#{@output}', '#{@output}', 's')"}
+    ↑
+  %span{onclick: "statusChange('down', '#s_#{@output}', '#{@output}', 's')"}
+    ↓
   - if @output == 'poke_1'
     %strong S:
-  = @poke.s
+  %span{ id: "s_#{@output}"}
+    = @poke.s
 %p
-  - if @output == 'poke_1'
-    %strong Type 1:
-  = is_type(@poke.type_1).to_s
+  %strong タイプ１:
+  %span{class: "#{type_class(@poke.type_1)}"}
+    = is_type(@poke.type_1).to_s
 %p
-  - if @output == 'poke_1'
-    %strong Type 2:
-  = is_type(@poke.type_2).to_s
+  %strong タイプ２:
+  %span{class: "#{type_class(@poke.type_2)}"}
+    = is_type(@poke.type_2).to_s
 .attack_type
   %p
-    4倍
-  -1.upto(18) do |attack|
-    - result = attack_result(attack, @poke.type_1, @poke.type_2)
-    - if result == 4
-      %p
-        = is_type(attack).to_s
+    4倍 
+    -1.upto(18) do |attack|
+      - result = attack_result(attack, @poke.type_1, @poke.type_2)
+      - if result == 4
+        %span{class: "#{type_class(attack)}"}
+          = is_type(attack).to_s
 .attack_type
   %p
-    2倍
-  -1.upto(18) do |attack|
-    - result = attack_result(attack, @poke.type_1, @poke.type_2)
-    - if result == 2
-      %p
-        = is_type(attack).to_s
+    2倍 
+    -1.upto(18) do |attack|
+      - result = attack_result(attack, @poke.type_1, @poke.type_2)
+      - if result == 2
+        %span{class: "#{type_class(attack)}"}
+          = is_type(attack).to_s
 .attack_type
   %p
-    0.5倍
-  -1.upto(18) do |attack|
-    - result = attack_result(attack, @poke.type_1, @poke.type_2)
-    - if result == 0.5
-      %p
-        = is_type(attack).to_s
+    0.5倍 
+    -1.upto(18) do |attack|
+      - result = attack_result(attack, @poke.type_1, @poke.type_2)
+      - if result == 0.5
+        %span{class: "#{type_class(attack)}"}
+          = is_type(attack).to_s
 .attack_type
   %p
-    0.25倍
-  -1.upto(18) do |attack|
-    - result = attack_result(attack, @poke.type_1, @poke.type_2)
-    - if result == 0.25
-      %p
-        = is_type(attack).to_s
+    0.25倍 
+    -1.upto(18) do |attack|
+      - result = attack_result(attack, @poke.type_1, @poke.type_2)
+      - if result == 0.25
+        %span{class: "#{type_class(attack)}"}
+          = is_type(attack).to_s
 .attack_type
   %p
     無効
-  -1.upto(18) do |attack|
-    - result = attack_result(attack, @poke.type_1, @poke.type_2)
-    - if result == 0
-      %p{class: "#{is_type(attack).to_s}"}
-        = is_type(attack).to_s
+    -1.upto(18) do |attack|
+      - result = attack_result(attack, @poke.type_1, @poke.type_2)
+      - if result == 0
+        %span{class: "#{type_class(attack)}"}
+          = is_type(attack).to_s

@@ -5,6 +5,7 @@
 
 .poke_area {
   display: flex;
+  justify-content: center;
   p {
     margin: 0 0 7px 0;
     font-size: 16px
@@ -18,7 +19,103 @@
     padding-left: 5px;
     background-color: #f9c3c3;
   }
+  .area_1,
+  .area_2 {
+    padding-bottom: 5px;
+    width: 50%;
+    max-width: 260px;
+  }
+  .normal,
+  .honoo,
+  .mizu,
+  .denki,
+  .kusa,
+  .koori,
+  .kakutou,
+  .doku,
+  .zimen,
+  .hikou,
+  .esupa,
+  .musi,
+  .iwa,
+  .gosuto,
+  .dragon,
+  .aku,
+  .hagane,
+  .feari {
+    display: inline-block;
+    border: 2px solid white;
+    border-radius: 15px;
+    font-size: 10px;
+    padding: 3px;
+    margin: 0 2px;
+    line-height: 14px;
+    font-weight: bold;
+    color: black;
+    height: auto;
+    min-width: 50px;
+    text-align: center;
+  }
+  .normal {
+    background-color: #b6b3aa;
+  }
+  .honoo{
+    background-color: #fe6045;
+  }
+  .mizu{
+    background-color: #459ff7;
+  }
+  .denki{
+    background-color: #ffce53;
+  }
+  .kusa{
+    background-color: #81b95e;
+  }
+  .koori{
+    background-color: #71d4f3;
+  }
+  .kakutou{
+    background-color: #c06249
+  }
+  .doku{
+    background-color: #af6894;
+  }
+  .zimen{
+    background-color: #e2bf65;
+  }
+  .hikou{
+    background-color: #6a9cf1;
+  }
+  .esupa{
+    background-color: #f973a6;
+  }
+  .musi{
+    background-color: #e2bf65;
+  }
+  .iwa{
+    background-color: #c7b06c;
+  }
+  .gosuto{
+    background-color: #7678c5;
+  }
+  .dragon{
+    background-color: #887cea;
+  }
+  .aku{
+    background-color: #936d5a;
+  }
+  .hagane{
+    background-color: #b9b8c0;
+  }
+  .feari{
+    background-color: #eeade7;
+  }
 }
 .attack_type {
   display: flex;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  background-color: #cee5f7;
+  text-align: left;
 }

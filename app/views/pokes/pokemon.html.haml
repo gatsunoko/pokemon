@@ -15,6 +15,32 @@
     #poke_2
 
 :javascript
+  let poke1_hp = 0;
+  let poke1_hp_upcount = 0;
+  let poke1_a = 0;
+  let poke1_a_upcount = 0;
+  let poke1_b = 0;
+  let poke1_b_upcount = 0;
+  let poke1_c = 0;
+  let poke1_c_upcount = 0;
+  let poke1_d = 0;
+  let poke1_d_upcount = 0;
+  let poke1_s = 0;
+  let poke1_s_upcount = 0;
+
+  let poke2_hp = 0;
+  let poke2_hp_upcount = 0;
+  let poke2_a = 0;
+  let poke2_a_upcount = 0;
+  let poke2_b = 0;
+  let poke2_b_upcount = 0;
+  let poke2_c = 0;
+  let poke2_c_upcount = 0;
+  let poke2_d = 0;
+  let poke2_d_upcount = 0;
+  let poke2_s = 0;
+  let poke2_s_upcount = 0;
+
   $(function() {
     $('#poke_list').autocomplete({
       source: "/pokes/auto_complete.json",
@@ -47,4 +73,136 @@
     }).data("ui-autocomplete")._renderItem = function(ul, item) {
       return $("<li>").attr("data-value", item.name).data("ui-autocomplete-item", item).append("<a>" + item.name + "</a>").appendTo(ul);
     };
+
   });
+
+  function statusChange(change, id, output, status) {
+    //計算
+    let count;
+    let statusValue;
+    if (output == 'poke_1') {
+      if (status == 'hp') {
+        count = poke1_hp_upcount;
+        statusValue = poke1_hp;
+      }
+      else if (status == 'a') {
+        count = poke1_a_upcount;
+        statusValue = poke1_a;
+      }
+      else if (status == 'b') {
+        count = poke1_b_upcount;
+        statusValue = poke1_b;
+      }
+      else if (status == 'c') {
+        count = poke1_c_upcount;
+        statusValue = poke1_c;
+      }
+      else if (status == 'd') {
+        count = poke1_d_upcount;
+        statusValue = poke1_d;
+      }
+      else if (status == 's') {
+        count = poke1_s_upcount;
+        statusValue = poke1_s;
+      }
+    }
+    else {
+      if (status == 'hp') {
+        count = poke2_hp_upcount;
+        statusValue = poke2_hp;
+      }
+      else if (status == 'a') {
+        count = poke2_a_upcount;
+        statusValue = poke2_a;
+      }
+      else if (status == 'b') {
+        count = poke2_b_upcount;
+        statusValue = poke2_b;
+      }
+      else if (status == 'c') {
+        count = poke2_c_upcount;
+        statusValue = poke2_c;
+      }
+      else if (status == 'd') {
+        count = poke2_d_upcount;
+        statusValue = poke2_d;
+      }
+      else if (status == 's') {
+        count = poke2_s_upcount;
+        statusValue = poke2_s;
+      }
+    }
+
+    if (count < 6 && change == 'up') {
+      count++;
+    }
+    else if (count > -6 && change == 'down') {
+      count--;
+    }
+
+    if (output == 'poke_1') {
+      if (status == 'hp') {
+        poke1_hp_upcount = count;
+      }
+      else if (status == 'a') {
+        poke1_a_upcount = count;
+      }
+      else if (status == 'b') {
+        poke1_b_upcount = count;
+      }
+      else if (status == 'c') {
+        poke1_c_upcount = count;
+      }
+      else if (status == 'd') {
+        poke1_d_upcount = count;
+      }
+      else if (status == 's') {
+        poke1_s_upcount = count;
+      }
+    }
+    else {
+      if (status == 'hp') {
+        poke2_hp_upcount = count;
+      }
+      else if (status == 'a') {
+        poke2_a_upcount = count;
+      }
+      else if (status == 'b') {
+        poke2_b_upcount = count;
+      }
+      else if (status == 'c') {
+        poke2_c_upcount = count;
+      }
+      else if (status == 'd') {
+        poke2_d_upcount = count;
+      }
+      else if (status == 's') {
+        poke2_s_upcount = count;
+      }
+    }
+    //書き換え
+    if (count > 0 && count < 7) {
+      $(id)[0].innerHTML = Math.floor(statusValue * (1 + 0.5 * count));
+    }
+    else if (count == 0) {
+      $(id)[0].innerHTML = statusValue;
+    }
+    else if (count == -1) {
+      $(id)[0].innerHTML = Math.floor(statusValue * 0.67);
+    }
+    else if (count == -2) {
+      $(id)[0].innerHTML = Math.floor(statusValue * 0.5);
+    }
+    else if (count == -3) {
+      $(id)[0].innerHTML = Math.floor(statusValue * 0.4);
+    }
+    else if (count == -4) {
+      $(id)[0].innerHTML = Math.floor(statusValue * 0.33);
+    }
+    else if (count == -5) {
+      $(id)[0].innerHTML = Math.floor(statusValue * 0.29);
+    }
+    else if (count == -6) {
+      $(id)[0].innerHTML = Math.floor(statusValue * 0.25);
+    }
+  }

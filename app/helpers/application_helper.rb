@@ -39,6 +39,46 @@ module ApplicationHelper
     end
   end
 
+  def type_class(type)
+    if type == 1
+      return 'normal'
+    elsif type == 2
+      return 'honoo'
+    elsif type == 3
+      return 'mizu'
+    elsif type == 4
+      return 'denki'
+    elsif type == 5
+      return 'kusa'
+    elsif type == 6
+      return 'koori'
+    elsif type == 7
+      return 'kakutou'
+    elsif type == 8
+      return 'doku'
+    elsif type == 9
+      return 'zimen'
+    elsif type == 10
+      return 'hikou'
+    elsif type == 11
+      return 'esupa'
+    elsif type == 12
+      return 'musi'
+    elsif type == 13
+      return 'iwa'
+    elsif type == 14
+      return 'gosuto'
+    elsif type == 15
+      return 'dragon'
+    elsif type == 16
+      return 'aku'
+    elsif type == 17
+      return 'hagane'
+    elsif type == 18
+      return 'feari'
+    end
+  end
+
   def attack_result(attack, type_1, type_2)
     damage = 1
     
@@ -195,7 +235,7 @@ module ApplicationHelper
     elsif attack == 5
       if type_2 == 3 || type_2 == 9 || type_2 == 13
         damage = damage * 2
-      elsif type_2 == 2 || type_2 == 5 || type_2 == 8 || type_2 == 12 || type_2 == 15 || type_2 == 17
+      elsif type_2 == 2 || type_2 == 5 || type_2 == 8 || type_2 == 10 || type_2 == 12 || type_2 == 15 || type_2 == 17
         damage = damage * 0.5
       end
     elsif attack == 6
