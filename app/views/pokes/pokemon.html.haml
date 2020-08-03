@@ -2,15 +2,15 @@
   .area_1
     .search.col-12.text-right.my-2
       = form_with(url: poke_search_pokes_path, method: :get, class: 'row') do |f|
-        = f.text_field :keyword, id: 'poke_list', class: 'form-control col-10'
-        %button.btn.btn-success.col-2{:type => "submit"} 🔍
+        = f.text_field :keyword, id: 'poke_list', class: 'form-control col-10 search_text'
+        %button{:type => "submit"} 🔍
         = f.hidden_field :output, value: 'poke_1'
     #poke_1
   .area_2
     .search.col-12.text-right.my-2
       = form_with(url: poke_search_pokes_path, method: :get, class: 'row') do |f|
-        = f.text_field :keyword, id: 'poke_list2', class: 'form-control col-10'
-        %button.btn.btn-success.col-2{:type => "submit"} 🔍
+        = f.text_field :keyword, id: 'poke_list2', class: 'form-control col-10 search_text'
+        %button{:type => "submit"} 🔍
         = f.hidden_field :output, value: 'poke_2'
     #poke_2
 
