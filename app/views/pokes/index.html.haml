@@ -3,7 +3,11 @@
 = link_to '比較ページ', pokemon_pokes_path
 - @pokes.each do |poke|
   %br
-  = "Poke.create(number: #{poke.number}, name: #{poke.name}, h; #{poke.h}, a: #{poke.a}, b: #{poke.b}, c: #{poke.c}, d: #{poke.d}, s: #{poke.s}, type_1: #{poke.type_1}, poke_2: #{poke.type_2})"
+  - pokename = poke.name.chomp
+  -if poke.type_2.present?
+    = "Poke.create(number: #{poke.number}, name: '#{pokename}', h: #{poke.h}, a: #{poke.a}, b: #{poke.b}, c: #{poke.c}, d: #{poke.d}, s: #{poke.s}, type_1: #{poke.type_1}, type_2: #{poke.type_2})"
+  -else
+    = "Poke.create(number: #{poke.number}, name: '#{pokename}', h: #{poke.h}, a: #{poke.a}, b: #{poke.b}, c: #{poke.c}, d: #{poke.d}, s: #{poke.s}, type_1: #{poke.type_1})"
 / %table
 /   %thead
 /     %tr
