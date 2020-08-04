@@ -65,7 +65,7 @@ class PokesController < ApplicationController
   end
 
   def auto_complete
-    @pokes = Poke.select('name').where('name like ?', params[:term].to_s + '%')
+    @pokes = Poke.select('name').where('name like ?', params[:term].to_s.tr('ぁ-ん','ァ-ン') + '%')
 
     p params[:term].to_s
     p @pokes.count
