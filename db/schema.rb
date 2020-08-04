@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_07_30_104048) do
 
   create_table "pokes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
+    t.integer "number"
     t.integer "h"
     t.integer "a"
     t.integer "b"
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_07_30_104048) do
     t.integer "type_2"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_pokes_on_name"
   end
 
 end

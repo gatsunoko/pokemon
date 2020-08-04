@@ -2,6 +2,7 @@ class CreatePokes < ActiveRecord::Migration[6.0]
   def change
     create_table :pokes do |t|
       t.string :name
+      t.integer :number
       t.integer :h
       t.integer :a
       t.integer :b
@@ -13,5 +14,7 @@ class CreatePokes < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :pokes, :name
   end
 end

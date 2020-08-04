@@ -7,7 +7,7 @@ class PokesController < ApplicationController
   before_action :set_poke, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pokes = Poke.all
+    @pokes = Poke.all.order(number: :asc)
     p '--------------------'
     # getPoke()
   end
@@ -65,7 +65,7 @@ class PokesController < ApplicationController
   end
 
   def auto_complete
-    @pokes = Poke.select('name').where('name like ?', params[:term].to_s.tr('ぁ-ん','ァ-ン') + '%')
+    @pokes = Poke.select('name').where('name like ?', params[:term].to_s.tr('ぁ-ん','ァ-ン') + '%').order(number: :asc)
 
     p params[:term].to_s
     p @pokes.count
@@ -83,42 +83,34 @@ class PokesController < ApplicationController
 
     def getPoke
       p '22222222222222222222222222'
-      pokelist = Nokogiri::HTML.parse(url_set("https://yakkun.com/swsh/stats_list.htm"), nil, 'EUC-JP')
+      pokelist = Nokogiri::HTML.parse(url_set("https://wiki.xn--rckteqa2e.com/wiki/%E7%A8%AE%E6%97%8F%E5%80%A4%E4%B8%80%E8%A6%A7_(%E7%AC%AC%E5%85%AB%E4%B8%96%E4%BB%A3)"), nil, 'utf-8')
       p pokelist.title
-      i = 0
-      pokelist.css('#contents > div:nth-child(4) > div > table > tbody tr').each do |doc|
+
+      pokelist.css('#mw-content-text > div > table > tbody > tr').each do |doc|
         pokemon = Poke.new
-        pokePage_url = doc.css('td.left > a')[0][:href]
-        pokePage_url = "https://yakkun.com" + pokePage_url
-        p pokePage_url
-        pokePage = Nokogiri::HTML.parse(url_set(pokePage_url), nil, 'EUC-JP')
-        p pokePage.title
-        p pokePage.css('tr.head > th').inner_text
-        pokemon.name = pokePage.css('tr.head > th').inner_text
-        p pokePage.css('td:nth-child(2) > ul.type > li:nth-child(1) > a > img')[0][:alt]
-        pokemon.type_1 = what_type(pokePage.css('td:nth-child(2) > ul.type > li:nth-child(1) > a > img')[0][:alt])
-        if pokePage.css('td:nth-child(2) > ul.type > li:nth-child(2) > a > img').present?
-          p pokePage.css('td:nth-child(2) > ul.type > li:nth-child(2) > a > img')[0][:alt]
-          pokemon.type_2 = what_type(pokePage.css('td:nth-child(2) > ul.type > li:nth-child(2) > a > img')[0][:alt])
+        pokemon.number = doc.css('th:nth-child(1)').inner_text
+        pokemon.name = doc.css('th.l').inner_text
+        p doc.css('th.l').inner_text
+        pokemon.type_1 = what_type(doc.css('td:nth-child(3)').inner_text)
+        if doc.css('td:nth-child(4)').present?
+          p doc.css('td:nth-child(4)').inner_text
+          pokemon.type_2 = what_type(doc.css('td:nth-child(4)').inner_text)
         end
-        # p pokePage.css('li:nth-child(2) > a > img')
-        p doc.css('td:nth-child(3)').inner_text
-        pokemon.h = doc.css('td:nth-child(3)').inner_text
-        p doc.css('td:nth-child(4)').inner_text
-        pokemon.a = doc.css('td:nth-child(4)').inner_text
+
         p doc.css('td:nth-child(5)').inner_text
-        pokemon.b = doc.css('td:nth-child(5)').inner_text
+        pokemon.h = doc.css('td:nth-child(5)').inner_text
         p doc.css('td:nth-child(6)').inner_text
-        pokemon.c = doc.css('td:nth-child(6)').inner_text
+        pokemon.a = doc.css('td:nth-child(6)').inner_text
         p doc.css('td:nth-child(7)').inner_text
-        pokemon.d = doc.css('td:nth-child(7)').inner_text
+        pokemon.b = doc.css('td:nth-child(7)').inner_text
         p doc.css('td:nth-child(8)').inner_text
-        pokemon.s = doc.css('td:nth-child(8)').inner_text
+        pokemon.c = doc.css('td:nth-child(8)').inner_text
+        p doc.css('td:nth-child(9)').inner_text
+        pokemon.d = doc.css('td:nth-child(9)').inner_text
+        p doc.css('td:nth-child(10)').inner_text
+        pokemon.s = doc.css('td:nth-child(10)').inner_text
 
         pokemon.save
-
-        break if i > 10
-        i = i + 1;
       end
     end
 

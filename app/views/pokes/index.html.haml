@@ -1,33 +1,36 @@
 %p#notice= notice
 %h1 Pokes
 = link_to '比較ページ', pokemon_pokes_path
-%table
-  %thead
-    %tr
-      %th Name
-      %th H
-      %th A
-      %th B
-      %th C
-      %th D
-      %th S
-      %th Type 1
-      %th Type 2
-      %th{:colspan => "3"}
-  %tbody
-    - @pokes.each do |poke|
-      %tr
-        %td= poke.name
-        %td= poke.h
-        %td= poke.a
-        %td= poke.b
-        %td= poke.c
-        %td= poke.d
-        %td= poke.s
-        %td= is_type(poke.type_1).to_s
-        %td= is_type(poke.type_2).to_s
-        %td= link_to 'Show', poke
-        %td= link_to 'Edit', edit_poke_path(poke)
-        %td= link_to 'Destroy', poke, method: :delete, data: { confirm: 'Are you sure?' }
+- @pokes.each do |poke|
+  %br
+  = "Poke.create(number: #{poke.number}, name: #{poke.name}, h; #{poke.h}, a: #{poke.a}, b: #{poke.b}, c: #{poke.c}, d: #{poke.d}, s: #{poke.s}, type_1: #{poke.type_1}, poke_2: #{poke.type_2})"
+/ %table
+/   %thead
+/     %tr
+/       %th Name
+/       %th H
+/       %th A
+/       %th B
+/       %th C
+/       %th D
+/       %th S
+/       %th Type 1
+/       %th Type 2
+/       %th{:colspan => "3"}
+/   %tbody
+/     - @pokes.each do |poke|
+/       %tr
+/         %td= poke.name
+/         %td= poke.h
+/         %td= poke.a
+/         %td= poke.b
+/         %td= poke.c
+/         %td= poke.d
+/         %td= poke.s
+/         %td= is_type(poke.type_1).to_s
+/         %td= is_type(poke.type_2).to_s
+/         %td= link_to 'Show', poke
+/         %td= link_to 'Edit', edit_poke_path(poke)
+/         %td= link_to 'Destroy', poke, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
 = link_to 'New Poke', new_poke_path
