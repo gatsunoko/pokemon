@@ -1,30 +1,10 @@
-<% if @output == 'poke_1' %>
-  poke1_hp = <%= @poke.h %>;
-  poke1_hp_upcount = 0;
-  poke1_a = <%= @poke.a %>;
-  poke1_a_upcount = 0;
-  poke1_b = <%= @poke.b %>;
-  poke1_b_upcount = 0;
-  poke1_c = <%= @poke.c %>;
-  poke1_c_upcount = 0;
-  poke1_d = <%= @poke.d %>;
-  poke1_d_upcount = 0;
-  poke1_s = <%= @poke.s %>;
-  poke1_s_upcount = 0;
-<% else %>
-  poke2_hp = <%= @poke.h %>;
-  poke2_hp_upcount = 0;
-  poke2_a = <%= @poke.a %>;
-  poke2_a_upcount = 0;
-  poke2_b = <%= @poke.b %>;
-  poke2_b_upcount = 0;
-  poke2_c = <%= @poke.c %>;
-  poke2_c_upcount = 0;
-  poke2_d = <%= @poke.d %>;
-  poke2_d_upcount = 0;
-  poke2_s = <%= @poke.s %>;
-  poke2_s_upcount = 0;
-<% end %>
+<% if @poke.present? %>
+var element = $("<%= j(render 'poke_search') %>");
 
-var poke = document.getElementById("<%= @output %>");
-poke.innerHTML = "<%= escape_javascript(render 'poke_detail') %>"
+var i = 0;
+element.find("tr > td").each(function(){
+  $("#js-poke-table tr")[i].append(this);
+  i++;
+})
+resetPokeTableIndex();
+<% end %>

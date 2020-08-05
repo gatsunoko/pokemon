@@ -1,52 +1,38 @@
-.poke_area
-  .area_1
-    .search.col-12.text-right.my-2
-      = form_with(url: poke_search_pokes_path, method: :get, class: 'row') do |f|
-        = f.text_field :keyword, id: 'poke_list', class: 'form-control col-10 search_text'
-        %button{:type => "submit"} 🔍
-        = f.hidden_field :output, value: 'poke_1'
-    #poke_1
-  .area_2
-    .search.col-12.text-right.my-2
-      = form_with(url: poke_search_pokes_path, method: :get, class: 'row') do |f|
-        = f.text_field :keyword, id: 'poke_list2', class: 'form-control col-10 search_text'
-        %button{:type => "submit"} 🔍
-        = f.hidden_field :output, value: 'poke_2'
-    #poke_2
+.p-poke-diff
+  %h1{ class: "p-poke-diff__title" } ポケファイト
+
+  = form_with(url: poke_search_pokes_path, method: :get, class: 'p-poke-diff__search') do |f|
+    = f.text_field :keyword, id: 'poke_list', class: 'form-control p-poke-diff__search-input', placeholder: "ポケモンの名前で検索"
+    %button{type: :submit, class: "p-poke-diff__search-button"}
+      %i.fas.fa-search
+
+  #js-none.p-poke-diff__none
+  #js-poke.p-poke-diff__table-outer
+    %table#js-poke-table.table.p-poke-diff__table
+      %tr
+        %th 名前
+      - ["HP", "攻撃", "防御", "特攻", "特防", "早さ"].each do |key|
+        %tr
+          %th
+            = key
+      %tr
+        %th タ1
+      %tr
+        %th タ2
+      - ["4倍", "2倍", "0.5倍", "0.25倍", "無効"].each do |key|
+        %tr
+          %th
+            = key
+      %tr
+        %th 操作
 
 :javascript
-  let poke1_hp = 0;
-  let poke1_hp_upcount = 0;
-  let poke1_a = 0;
-  let poke1_a_upcount = 0;
-  let poke1_b = 0;
-  let poke1_b_upcount = 0;
-  let poke1_c = 0;
-  let poke1_c_upcount = 0;
-  let poke1_d = 0;
-  let poke1_d_upcount = 0;
-  let poke1_s = 0;
-  let poke1_s_upcount = 0;
-
-  let poke2_hp = 0;
-  let poke2_hp_upcount = 0;
-  let poke2_a = 0;
-  let poke2_a_upcount = 0;
-  let poke2_b = 0;
-  let poke2_b_upcount = 0;
-  let poke2_c = 0;
-  let poke2_c_upcount = 0;
-  let poke2_d = 0;
-  let poke2_d_upcount = 0;
-  let poke2_s = 0;
-  let poke2_s_upcount = 0;
-
   $(function() {
     $('#poke_list').autocomplete({
       source: "/pokes/auto_complete.json",
       delay: 500,
       minLength: 2,
-      focus: function(event, ui) {
+      keydown: function(event, ui) {
         $("#poke_list").val(ui.item.name);
         return false;
       },
@@ -57,159 +43,65 @@
     }).data("ui-autocomplete")._renderItem = function(ul, item) {
       return $("<li>").attr("data-value", item.name).data("ui-autocomplete-item", item).append("<a>" + item.name + "</a>").appendTo(ul);
     };
-
-    $('#poke_list2').autocomplete({
-      source: "/pokes/auto_complete.json",
-      delay: 500,
-      minLength: 2,
-      focus: function(event, ui) {
-        $("#poke_list2").val(ui.item.name);
-        return false;
-      },
-      select: function(event, ui) {
-        $('#poke_list2').val(ui.item.name);
-        return false;
-      }
-    }).data("ui-autocomplete")._renderItem = function(ul, item) {
-      return $("<li>").attr("data-value", item.name).data("ui-autocomplete-item", item).append("<a>" + item.name + "</a>").appendTo(ul);
-    };
-
   });
 
-  function statusChange(change, id, output, status, upCount) {
-    //計算
-    let count;
-    let statusValue;
-    if (output == 'poke_1') {
-      if (status == 'hp') {
-        count = poke1_hp_upcount;
-        statusValue = poke1_hp;
-      }
-      else if (status == 'a') {
-        count = poke1_a_upcount;
-        statusValue = poke1_a;
-      }
-      else if (status == 'b') {
-        count = poke1_b_upcount;
-        statusValue = poke1_b;
-      }
-      else if (status == 'c') {
-        count = poke1_c_upcount;
-        statusValue = poke1_c;
-      }
-      else if (status == 'd') {
-        count = poke1_d_upcount;
-        statusValue = poke1_d;
-      }
-      else if (status == 's') {
-        count = poke1_s_upcount;
-        statusValue = poke1_s;
-      }
+  function statusChange(element, add) {
+    let status_element = $(element).siblings(".js-poke-status")
+    let counter_element = $(element).siblings(".js-poke-counter")
+
+    let init = status_element.data("init");
+    let after_count = parseInt(counter_element.text().replace(/\(/, '').replace(/\)/, '')) + add;
+
+    if (after_count >= 1 && after_count <= 6) {
+      console.log("a")
+      status_element.text(Math.floor(init * (1 + 0.5 * after_count)));
     }
-    else {
-      if (status == 'hp') {
-        count = poke2_hp_upcount;
-        statusValue = poke2_hp;
-      }
-      else if (status == 'a') {
-        count = poke2_a_upcount;
-        statusValue = poke2_a;
-      }
-      else if (status == 'b') {
-        count = poke2_b_upcount;
-        statusValue = poke2_b;
-      }
-      else if (status == 'c') {
-        count = poke2_c_upcount;
-        statusValue = poke2_c;
-      }
-      else if (status == 'd') {
-        count = poke2_d_upcount;
-        statusValue = poke2_d;
-      }
-      else if (status == 's') {
-        count = poke2_s_upcount;
-        statusValue = poke2_s;
-      }
+    else if (after_count == 0) {
+      console.log("b")
+      status_element.text(init);
+    }
+    else if (after_count >= -6 && after_count < 0) {
+      status_element.text(Math.floor(init * (2 / (2 - after_count))));
     }
 
-    if (count < 6 && change == 'up') {
-      count++;
+    if (after_count >= -6 && after_count <= 6) {
+      counter_element.text(`(${after_count})`);
     }
-    else if (count > -6 && change == 'down') {
-      count--;
-    }
+  }
 
-    if (output == 'poke_1') {
-      if (status == 'hp') {
-        poke1_hp_upcount = count;
+  function resetPokeTableIndex() {
+    $("#js-poke-table tr").each(function(){
+      var index = 0;
+
+      $(this).find("td").each(function(){
+        $(this).attr("data-index", index);
+        index++;
+      })
+    })
+  }
+
+  function pokeMove(element, move) {
+    let index = parseInt($(element).closest("td").attr("data-index"));
+
+    $("#js-poke-table tr").each(function(){
+      let target = $(this).find(`td[data-index="${index}"]`);
+      let base_element = $(this).find(`td[data-index="${index + move}"]`);
+
+      if(base_element.length) {
+        if(move == 1) {
+          base_element.after(target);
+        }
+        else if (move == -1) {
+          base_element.before(target);
+        }
       }
-      else if (status == 'a') {
-        poke1_a_upcount = count;
-      }
-      else if (status == 'b') {
-        poke1_b_upcount = count;
-      }
-      else if (status == 'c') {
-        poke1_c_upcount = count;
-      }
-      else if (status == 'd') {
-        poke1_d_upcount = count;
-      }
-      else if (status == 's') {
-        poke1_s_upcount = count;
-      }
-    }
-    else {
-      if (status == 'hp') {
-        poke2_hp_upcount = count;
-      }
-      else if (status == 'a') {
-        poke2_a_upcount = count;
-      }
-      else if (status == 'b') {
-        poke2_b_upcount = count;
-      }
-      else if (status == 'c') {
-        poke2_c_upcount = count;
-      }
-      else if (status == 'd') {
-        poke2_d_upcount = count;
-      }
-      else if (status == 's') {
-        poke2_s_upcount = count;
-      }
-    }
-    //書き換え
-    if (count > 0 && count < 7) {
-      $(id)[0].innerHTML = Math.floor(statusValue * (1 + 0.5 * count));
-    }
-    else if (count == 0) {
-      $(id)[0].innerHTML = statusValue;
-    }
-    else if (count == -1) {
-      $(id)[0].innerHTML = Math.floor(statusValue * 0.67);
-    }
-    else if (count == -2) {
-      $(id)[0].innerHTML = Math.floor(statusValue * 0.5);
-    }
-    else if (count == -3) {
-      $(id)[0].innerHTML = Math.floor(statusValue * 0.4);
-    }
-    else if (count == -4) {
-      $(id)[0].innerHTML = Math.floor(statusValue * 0.33);
-    }
-    else if (count == -5) {
-      $(id)[0].innerHTML = Math.floor(statusValue * 0.29);
-    }
-    else if (count == -6) {
-      $(id)[0].innerHTML = Math.floor(statusValue * 0.25);
-    }
-    //上昇数書き換え
-    if (count == 0) {
-      $(upCount)[0].innerHTML = ""
-    }
-    else {
-      $(upCount)[0].innerHTML = count;
-    }
+    })
+
+    resetPokeTableIndex();
+  }
+
+  function pokeRemove(element) {
+    let index = $(element).closest("td").attr("data-index");
+    $(`#js-poke-table td[data-index="${index}"]`).remove();
+    resetPokeTableIndex();
   }
