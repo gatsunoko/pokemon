@@ -1,0 +1,38 @@
+%table
+  %tr
+    %td
+      = @poke.name
+  - ["h", "a", "b", "c", "d", "s"].each do |key|
+    %tr
+      %td
+        %span{class: "js-poke-status", "data-init" => @poke.send(key)}
+          = @poke.send(key)
+        %span{class: "js-poke-counter p-poke-diff__counter"} (0)
+        %span{onclick: %Q|statusChange(this, -1)|, class: "p-poke-diff__down"}
+          %i.fas.fa-caret-square-down
+        %span{onclick: %Q|statusChange(this, 1)|, class: "p-poke-diff__up"}
+          %i.fas.fa-caret-square-up
+  %tr
+    %td
+      %span{class: "#{type_class(@poke.type_1)}"}
+        = is_type(@poke.type_1).to_s
+  %tr
+    %td
+      %span{class: "#{type_class(@poke.type_2)}"}
+        = is_type(@poke.type_2).to_s
+  - [4, 2, 0.5, 0.25, 0].each do |key|
+    %tr
+      %td
+        -1.upto(18) do |attack|
+          - result = attack_result(attack, @poke.type_1, @poke.type_2)
+          - if result == key
+            %span{class: "#{type_class(attack)}"}
+              = is_type(attack).to_s
+  %tr
+    %td
+      = link_to "javascript:void(0)", class: "p-poke-diff__left", onclick: %Q|pokeMove(this, -1)| do
+        %i.fas.fa-chevron-left
+      = link_to "javascript:void(0)", class: "p-poke-diff__right", onclick: %Q|pokeMove(this, 1)| do
+        %i.fas.fa-chevron-right
+      = link_to "javascript:void(0)", class: "p-poke-diff__remove", onclick: %Q|pokeRemove(this)| do
+        %i.fas.fa-times-circle

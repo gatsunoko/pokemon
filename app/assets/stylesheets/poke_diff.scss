@@ -1,0 +1,193 @@
+.p-poke-diff {
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(25, 25, 25, 0.3);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.p-poke-diff__title {
+  font-weight: bold;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.p-poke-diff__search {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.p-poke-diff__search-input {
+  padding-right: 38px;
+}
+
+.p-poke-diff__search-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 38px;
+  background: none;
+  background-color: transparent;
+  border: none;
+}
+
+.p-poke-diff__table-outer {
+  overflow-x: scroll;
+  border: 2px solid #ccc;
+}
+
+.p-poke-diff__table {
+  width: max-content;
+  margin-bottom: 0;
+
+  tr {
+    &:nth-child(1),
+    &:nth-child(7),
+    &:nth-child(9),
+    &:nth-child(14) {
+      border-bottom: 2px solid #ccc;
+    }
+  }
+
+  th,
+  td {
+    padding: 4px 8px;
+  }
+
+  th {
+    width: 50px;
+    position: sticky;
+    left: 0;
+    text-align: right;
+    font-weight: bold;
+    background-color: #eee;
+  }
+
+  td {
+    width: 124px;
+    border: 1px solid #dee2e6;
+  }
+
+  .fa-caret-square-up {
+    color: #ef5350;
+  }
+
+  .fa-caret-square-down {
+    color: #42a5f5;
+  }
+}
+
+.p-poke-diff__up,
+.p-poke-diff__down {
+  float: right;
+  font-size: 18px;
+}
+
+.p-poke-diff__down {
+  margin-left: 10px;
+}
+
+.p-poke-diff__left,
+.p-poke-diff__right,
+.p-poke-diff__remove {
+  font-size: 18px;
+  color: black;
+}
+
+.p-poke-diff__left {
+  margin-right: 10px;
+}
+
+.p-poke-diff__remove {
+  float: right;
+  color: #ef5350;
+}
+
+.normal,
+.honoo,
+.mizu,
+.denki,
+.kusa,
+.koori,
+.kakutou,
+.doku,
+.zimen,
+.hikou,
+.esupa,
+.musi,
+.iwa,
+.gosuto,
+.dragon,
+.aku,
+.hagane,
+.feari {
+  display: inline-block;
+  border: 2px solid white;
+  border-radius: 15px;
+  font-size: 10px;
+  padding: 4px;
+  margin: 0 2px;
+  line-height: 12px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 0px 3px rgba(25, 25, 25, 0.3);
+}
+.normal {
+  background-color: #b6b3aa;
+}
+.honoo{
+  background-color: #fe6045;
+}
+.mizu{
+  background-color: #459ff7;
+}
+.denki{
+  background-color: #ffce53;
+}
+.kusa{
+  background-color: #81b95e;
+}
+.koori{
+  background-color: #71d4f3;
+}
+.kakutou{
+  background-color: #c06249
+}
+.doku{
+  background-color: #af6894;
+}
+.zimen{
+  background-color: #e2bf65;
+}
+.hikou{
+  background-color: #6a9cf1;
+}
+.esupa{
+  background-color: #f973a6;
+}
+.musi{
+  background-color: #e2bf65;
+}
+.iwa{
+  background-color: #c7b06c;
+}
+.gosuto{
+  background-color: #7678c5;
+}
+.dragon{
+  background-color: #887cea;
+}
+.aku{
+  background-color: #936d5a;
+}
+.hagane{
+  background-color: #b9b8c0;
+}
+.feari{
+  background-color: #eeade7;
+}
+

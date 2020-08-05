@@ -20,7 +20,6 @@ class PokesController < ApplicationController
 
   def poke_search
     @poke = Poke.where('name like ?', '%' + params[:keyword] + '%').first
-    @output = params[:output].to_s
   end
 
   def new
