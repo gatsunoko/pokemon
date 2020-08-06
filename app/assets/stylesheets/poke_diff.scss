@@ -1,13 +1,18 @@
 .p-poke-diff {
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 819px;
+  margin: 0px auto;
   background-color: #fff;
   box-shadow: 0 3px 5px rgba(25, 25, 25, 0.3);
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 0px;
   font-size: 14px;
 }
-
+@media screen and(min-width: 820px) {
+  .p-poke-diff {
+    margin: 40px auto;
+    border-radius: 10px;
+  }
+}
 .p-poke-diff__title {
   font-weight: bold;
   font-size: 32px;

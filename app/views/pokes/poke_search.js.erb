@@ -1,4 +1,5 @@
 <% if @poke.present? %>
+$('#poke_list')[0].value = ""
 var element = $("<%= j(render 'poke_search') %>");
 
 var i = 0;

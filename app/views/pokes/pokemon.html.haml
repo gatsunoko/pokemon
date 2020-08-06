@@ -53,11 +53,9 @@
     let after_count = parseInt(counter_element.text().replace(/\(/, '').replace(/\)/, '')) + add;
 
     if (after_count >= 1 && after_count <= 6) {
-      console.log("a")
       status_element.text(Math.floor(init * (1 + 0.5 * after_count)));
     }
     else if (after_count == 0) {
-      console.log("b")
       status_element.text(init);
     }
     else if (after_count >= -6 && after_count < 0) {
